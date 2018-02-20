@@ -1,5 +1,6 @@
 <?php
 //fetch.php
+
 $connect = mysqli_connect("localhost", "root", "", "infodev");
 $output = '';
 if(isset($_POST["query"]))
@@ -28,7 +29,7 @@ if(mysqli_num_rows($result) > 0)
 {
  $output .= '
   <div class="content table-responsive table-full-width">
-  <table class="table table-hover table-striped">
+  <table id="table" class="table table-hover table-striped">
   <thead>
     <tr>
 
@@ -66,3 +67,12 @@ else
 }
 
 ?>
+
+ <script>
+    // Use the plugin once the DOM has been loaded.
+    $(function () {
+      // Apply the plugin 
+      $('#table').excelTableFilter();
+    });
+  </script>
+

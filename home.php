@@ -1,18 +1,11 @@
 <?php
-session_start();
-require_once 'user.php';
-$user_home = new USER();
+@session_start();
 
-if(!$user_home->is_logged_in())
-{
-	$user_home->redirect('index.php');
+if(!isset($_SESSION['user_id'])) {
+  header('Location: index.php');
 }
-
-$stmt = $user_home->runQuery("SELECT * FROM users WHERE userID=:uid");
-$stmt->execute(array(":uid"=>$_SESSION['userSession']));
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -36,7 +29,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 
 </head>
@@ -144,7 +137,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
               
               			<li>
                             <a>
-                                <p>Welcome, <?php echo $row['firstName'] ." ". $row['lastName'] ; ?></p>
+
+                                <p>Welcome, <?php 
+
+                                if(isset($_SESSION['user_id'])) 
+
+                                {
+                                echo $_SESSION['user_firstname'] ." ". $_SESSION['user_lastname'] ;
+                                } ?></p>
                             </a>
                         </li>
 
@@ -169,13 +169,19 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     <div class="col-md-12">
              <div class="card">
                             <div class="header">
+                                   <div class="row">
+                                    <div class="col-md-9">
                                 <a class="btn btn-primary btn-fill" id="addproduct" role="button">Add Product</a>
-
-                                <!--  <div class="input-group">
-                                 <span class="input-group-addon">Search</span>
-                                 <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
-                                </div> -->
                             </div>
+                                <div class="col-md-3">
+                                 <div class="input-group">
+                                 
+                                 <input type="text" name="search_text" id="search_text" placeholder="Search by Document Name" class="form-control" />
+                                 <span class="input-group-addon">Search</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                             <div id="result"></div>
                             </table>
 
@@ -361,26 +367,30 @@ $(document).ready(function(){
 });
 
 
- // $(document).on('click', '.delete', function(){
- //   var id = $(this).attr("id");
- //   if(confirm("Are you sure you want to remove this?"))
- //   {
- //    $.ajax({
- //     url:"delete.php",
- //     method:"POST",
- //     data:{id:id},
- //     success:function(data){
- //      $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
- //      $('#user_data').DataTable().destroy();
- //      fetch_data();
- //     }
- //    });
- //    setInterval(function(){
- //     $('#alert_message').html('');
- //    }, 5000);
- //   }
- //  });
+ $(document).on('click', '.delete', function(){
+   var id = $(this).attr("id");
+   var tr = $(this).closest('tr');
+   if(confirm("Are you sure you want to remove this?"))
+   {
+    $.ajax({
+     url:"delete.php",
+     method:"POST",
+     cache: false,
+     data:{id:id},
+     success:function(data){
+             tr.fadeOut(1000, function(){
+                        $(this).remove();
+                    });
+
+     }
+    });
+   }
+  });
+
+
+
 
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>

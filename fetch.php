@@ -2,6 +2,7 @@
 //fetch.php
 $connect = mysqli_connect("localhost", "root", "", "infodev");
 $output = '';
+$nodata = 'No data found';
 if(isset($_POST["query"]))
 {
  $search = mysqli_real_escape_string($connect, $_POST["query"]);
@@ -64,7 +65,7 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
- echo 'No data found';
+ echo  "<center>" .$nodata. "</center>";
 }
 
 ?>

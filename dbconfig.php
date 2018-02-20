@@ -1,28 +1,14 @@
 <?php
-class Database
-{
+// mysql connection
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'infodev';
 
-    private $host = "localhost";
-    private $db_name = "infodev";
-    private $username = "root";
-    private $password = "";
-    public $conn;
+$db = new mysqli($hostname, $username, $password, $database);
+if($db->connect_errno)
+    die('Error ' . $this->db->connect_error);
 
-    public function dbConnection()
-	{
-
-	    $this->conn = null;
-        try
-		{
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-		catch(PDOException $exception)
-		{
-            echo "Connection error: " . $exception->getMessage();
-        }
-
-        return $this->conn;
-    }
-}
+include_once('UserClass.php');
+$con = new UserClass($db);
 ?>

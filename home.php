@@ -1,18 +1,11 @@
 <?php
-session_start();
-require_once 'user.php';
-$user_home = new USER();
+@session_start();
 
-if(!$user_home->is_logged_in())
-{
-	$user_home->redirect('index.php');
+if(!isset($_SESSION['user_id'])) {
+  header('Location: index.php');
 }
-
-$stmt = $user_home->runQuery("SELECT * FROM users WHERE userID=:uid");
-$stmt->execute(array(":uid"=>$_SESSION['userSession']));
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -144,7 +137,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
               
               			<li>
                             <a>
-                                <p>Welcome, <?php echo $row['firstName'] ." ". $row['lastName'] ; ?></p>
+
+                                <p>Welcome, <?php 
+
+                                if(isset($_SESSION['user_id'])) 
+
+                                {
+                                echo $_SESSION['user_firstname'] ." ". $_SESSION['user_lastname'] ;
+                                } ?></p>
                             </a>
                         </li>
 

@@ -1,23 +1,11 @@
 <?php
-session_start();
-require_once 'user.php';
-$user_login = new USER();
+@session_start();
 
-if($user_login->is_logged_in()!="")
-{
-    $user_login->redirect('home.php');
-}
+ if(isset($_SESSION['user_id']))
+ {
+     header('Location: home.php');
+ }
 
-if(isset($_POST['btn-login']))
-{
-    $uname = trim($_POST['txtemail']);
-    $upass = trim($_POST['txtupass']);
-
-    if($user_login->login($uname,$upass))
-    {
-        $user_login->redirect('home.php');
-    }
-}
 ?>
 
 <!doctype html>
@@ -43,6 +31,8 @@ if(isset($_POST['btn-login']))
     <!--  Login CSS    -->
     <link href="assets/css/login.css" rel="stylesheet" media="screen">
 
+    <link rel="stylesheet" href="assets/css/excel-filter.css" />
+
 
 
 
@@ -53,7 +43,6 @@ if(isset($_POST['btn-login']))
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
 
     
 </head>
@@ -138,15 +127,20 @@ if(isset($_POST['btn-login']))
                 <div class="row">
                     <div class="col-md-12">
              <div class="card">
-                            <div class="header">
-                                 <h4 class="title">Information Development Product</h4>
-
-                              <!--    <div class="input-group">
-                                 <span class="input-group-addon">Search</span>
-                                 <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
-                                </div> -->
-                            </div>
-                            <div id="result"></div>
+                                <div class="header">
+                                   <div class="row">
+                                    <div class="col-md-9">
+                                    </div>
+                                    <div class="col-md-3">
+                                    <div class="input-group">
+                                 
+                                    <input type="text" name="search_text" id="search_text" placeholder="Search by Document Name" class="form-control" />
+                                    <span class="input-group-addon">Search</span>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                    <div id="result"></div>
                             </table>
 
                             </div>
@@ -162,46 +156,34 @@ if(isset($_POST['btn-login']))
     </div>
 </div>
 
-    <div class="modal fade" id="popupmodal" role="dialog">
-    <div class="modal-dialog">
-        <div class="content" id="login">
-            <?php
-        if(isset($_GET['inactive']))
-        { ?>
-              <div class='alert alert-error'>
-                <button class='close' data-dismiss='alert'>&times;</button>
-                <strong>Sorry!</strong> This Account is not Activated Go to your Inbox and Activate it.
-            </div>
-            <?php
-        }
-        ?>
-    <form class="form-signin" id="reg-form" method="post">
-        <?php
-        if(isset($_GET['error']))
-        {
-            ?>
-                 <div class='alert alert-success'>
-                <button class='close' data-dismiss='alert'>&times;</button>
-                <strong>Wrong Details!</strong>
-            </div>
-            <?php
-        }
-        ?>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <center><img src="images/infor-logo.png"</center>
+    <div id="login-modal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
 
+    <div class="modal-dialog ">
+        <div class="login-modal-container">
+            <form id="login-form" role="form">
 
-        <h4 class="form-signin-heading" id="loginfont">Information Development</h4><hr />
-        <input type="text" class="input-block-level" placeholder="Username" name="txtemail" required />
-        <input type="password" class="input-block-level" placeholder="Password" name="txtupass" required />
-        <hr />
-
-        <button class="btn btn-large btn-primary" type="submit" name="btn-login">Sign in</button>
-
-      </form>
-
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     
+                      <center><img src="images/infor-logo.png"</center>
+                    <h2>Information Development</h2>
+                    <div id="err-msg"></div>
+                    <div class="form-group">
+                        <input type="text" id="uname" name="uname" placeholder="Username" class="form-control input-lg" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control input-lg" />
+                    </div>
+                    <div class="form-group">
+                        <div id="captcha"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" id="login" name="login" value="Sign In" class="btn-block btn-lg" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -215,6 +197,8 @@ if(isset($_POST['btn-login']))
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+    <script src="assets/js/login.js"></script>
 
 
 <script>
@@ -246,17 +230,13 @@ if(isset($_POST['btn-login']))
   }
  });
 
-    $(document).ready(function(){
-    $("#login-popup").click(function(){
-        $("#popupmodal").modal();
-    });
-
-});
 
 
 });
 
 </script>
+
+  <script src="assets/js/excel-filter.js"></script>
 
 </html>
  

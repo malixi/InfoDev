@@ -185,12 +185,18 @@ if(!isset($_SESSION['user_id'])) {
                             <div id="result"></div>
                             </table>
 
+                              <div class="footer">
+                                    <div class="header">
+                                    <a type="button" class="btn btn-danger btn-fill pull-left delete_all">Delete</a>
+                                    </div>
+                                </div>
                             </div>
 
 
                         </div>
                     </div>
-            </div>
+
+                    </div>
       
         </div>
        <?php include 'footer.php'; ?>
@@ -198,7 +204,7 @@ if(!isset($_SESSION['user_id'])) {
     </div>
 </div>
 
-
+                    <!-- Login pop -->
                     <div class="modal fade" id="showproduct" role="dialog">
                     <div class="modal-dialog modal-sm modal-dialog-centered">
                     <div class="row" >
@@ -310,8 +316,8 @@ if(!isset($_SESSION['user_id'])) {
                         </div>
  
                 </div>
-            </div>
-        </div>
+                </div>
+                </div>
 
    
 
@@ -366,31 +372,31 @@ $(document).ready(function(){
 
 });
 
+// version 1.0 delete.php
+ // $(document).on('click', '.delete', function(){
+ //   var id = $(this).attr("id");
+ //   var tr = $(this).closest('tr');
+ //   if(confirm("Are you sure you want to remove this?"))
+ //   {
+ //    $.ajax({
+ //     url:"delete.php",
+ //     method:"POST",
+ //     cache: false,
+ //     data:{id:id},
+ //     success:function(data){
+ //             tr.fadeOut(1000, function(){
+ //                        $(this).remove();
+ //                    });
 
- $(document).on('click', '.delete', function(){
-   var id = $(this).attr("id");
-   var tr = $(this).closest('tr');
-   if(confirm("Are you sure you want to remove this?"))
-   {
-    $.ajax({
-     url:"delete.php",
-     method:"POST",
-     cache: false,
-     data:{id:id},
-     success:function(data){
-             tr.fadeOut(1000, function(){
-                        $(this).remove();
-                    });
-
-     }
-    });
-   }
-  });
+ //     }
+ //    });
+ //   }
+ //  });
 
 
 
 
 </script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 </html>

@@ -33,7 +33,7 @@ if(mysqli_num_rows($result) > 0)
   <thead>
     <tr>
 
-       <th>Action</th>
+       <th><input type="checkbox" id="master"></th>
        <th>Product Area</th>
        <th>Product Long Name</th>
        <th>Product Short Name</th>
@@ -48,8 +48,8 @@ if(mysqli_num_rows($result) > 0)
  while($row = mysqli_fetch_array($result))
  {
   $output .= '
-   <tr>
-   <td><button type="button" name="delete" class="btn btn-danger btn-xs delete btn-fill" id="'.$row["id"].'">Delete</button></td>
+   <tr data-row-id="'.$row["id"].'">
+    <td><input type="checkbox" class="sub_chk" data-id="'.$row["id"].'"></td>
     <td>'.$row["productArea"].'</td>
     <td>'.$row["productLongName"].'</td>
     <td>'.$row["productShortName"].'</td>
@@ -71,3 +71,67 @@ else
 ?>
 
 
+<script type="text/javascript">
+$(document).ready(function(){
+  jQuery('#master').on('click', function(e) {
+    if($(this).is(':checked',true))  
+    {
+      $(".sub_chk").prop('checked', true);  
+    }  
+    else  
+    {  
+      $(".sub_chk").prop('checked',false);  
+    }  
+  });
+  jQuery('.delete_all').on('click', function(e) { 
+    var allVals = [];  
+    $(".sub_chk:checked").each(function() {  
+      allVals.push($(this).attr('data-id'));
+    });  
+    //alert(allVals.length); return false;  
+    if(allVals.length <=0)  
+    {  
+      alert("Please select row.");  
+    }  
+    else {  
+      //$("#loading").show(); 
+      WRN_PROFILE_DELETE = "Are you sure you want to delete this row?";  
+      var check = confirm(WRN_PROFILE_DELETE);  
+      if(check == true){  
+
+        var join_selected_values = allVals.join(","); 
+        
+        $.ajax({   
+          
+          type: "POST",  
+          url: "delete.php",  
+          cache:false,  
+          data: 'ids='+join_selected_values,  
+          success: function(response)  
+          {   
+            $("#loading").hide();  
+            $("#msgdiv").html(response);
+            //referesh table
+          }   
+        });
+        $.each(allVals, function( index, value ) {
+          $('table tr').filter("[data-row-id='" + value + "']").remove();
+        });
+        
+
+      }  
+    }  
+  });
+  jQuery('.remove-row').on('click', function(e) {
+    WRN_PROFILE_DELETE = "Are you sure you want to delete this row?";  
+      var check = confirm(WRN_PROFILE_DELETE);  
+      if(check == true){
+        $('table tr').filter("[data-row-id='" + $(this).attr('data-id') + "']").remove();
+      }
+  });
+});
+</script>
+
+
+<!--  <tr>
+   <td><button type="button" name="delete" class="btn btn-danger btn-xs delete btn-fill" id="'.$row["id"].'">Delete</button></td> -->

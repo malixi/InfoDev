@@ -33,6 +33,7 @@ if(mysqli_num_rows($result) > 0)
   <thead>
     <tr>
 
+    
        <th>Product Area</th>
        <th>Product Long Name</th>
        <th>Product Short Name</th>

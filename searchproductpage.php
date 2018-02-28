@@ -19,8 +19,12 @@ if (mysqli_connect_errno()) {
     exit();
 } 
   
-$sql = "SELECT * FROM product ORDER BY id";  
-$result = mysqli_query($conn, $sql);  
+$limit = 5;  
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+$start_from = ($page-1) * $limit;  
+
+$sql = "SELECT * FROM product ORDER BY id ASC LIMIT $start_from, $limit";  
+$rs_result = mysqli_query($conn, $sql);  
 ?> 
 
 
@@ -40,18 +44,16 @@ $result = mysqli_query($conn, $sql);
 
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/css/excel-filter.css" />
 
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
+
     <!--     Fonts and icons     -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css"/>
- 
-
 
 </head>
 <body>
@@ -159,7 +161,19 @@ $result = mysqli_query($conn, $sql);
                                     <div class="col-md-9">
                                 <a class="btn btn-primary btn-fill" id="addproduct" role="button">Add Product</a>
                             </div>
-    
+                                <div class="col-md-3">
+                                 <div class="input-group">
+                                 
+                                 <form role="form" action="searchproductpage.php" method="GET" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                        <span class="input-group-btn">
+                        <input type="submit" class="btn btn-primary" value="Search">
+                        </span>
+                    </div>
+                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -181,10 +195,10 @@ $result = mysqli_query($conn, $sql);
                                 </tr>
                                 </thead>
                             <?php  
-                            while ($row = mysqli_fetch_array($result)) {
+                            while ($row = mysqli_fetch_array($rs_result)) {
                             ?>  
                                         <tr data-row-id="<?php echo $row["id"]; ?>">
-                                        <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $row["id"]; ?>"></td> 
+                                        <td><input type="checkbox" class="sub_chk" data-id="<?php echo $row["id"]; ?>"></td> 
                                         <td><?php echo $row["productArea"]; ?></td>  
                                         <td><?php echo $row["productLongName"]; ?></td>  
                                         <td><?php echo $row["productShortName"]; ?></td>
@@ -214,6 +228,30 @@ $result = mysqli_query($conn, $sql);
 
                                 </div>
 
+                                                  <?php  
+                                    $sql = "SELECT COUNT(id) FROM product";  
+                                    $rs_result = mysqli_query($conn, $sql);  
+                                    $row = mysqli_fetch_row($rs_result);  
+                                    $total_records = $row[0];  
+                                    $total_pages = ceil($total_records / $limit);  
+                                    $pagLink = "<nav><ul class='pagination'>";  
+                                    for ($i=1; $i<=$total_pages; $i++) {  
+                                                 $pagLink .= "<li><a href='home.php?page=".$i."'>".$i."</a></li>";  
+                                    };  
+                                    echo $pagLink . "</ul></nav>";  
+                                    ?>
+
+                                <script type="text/javascript">
+$(document).ready(function(){
+$('.pagination').pagination({
+        items: <?php echo $total_records;?>,
+        itemsOnPage: <?php echo $limit;?>,
+        cssStyle: 'light-theme',
+        currentPage : <?php echo $page;?>,
+        hrefTextPrefix : 'home.php?page='
+    });
+    });
+</script>
                             </div>
 
 
@@ -360,6 +398,32 @@ $result = mysqli_query($conn, $sql);
 <script>
 $(document).ready(function(){
 
+ // load_data();
+
+ // function load_data(query)
+ // {
+ //  $.ajax({
+ //   url:"fetch.php",
+ //   method:"POST",
+ //   data:{query:query},
+ //   success:function(data)
+ //   {
+ //    $('#result').html(data);
+ //   }
+ //  });
+ // }
+ // $('#search_text').keyup(function(){
+ //  var search = $(this).val();
+ //  if(search != '')
+ //  {
+ //   load_data(search);
+ //  }
+ //  else
+ //  {
+ //   load_data();
+ //  }
+ // });
+
 
     $(document).ready(function(){
     $("#addproduct").click(function(){
@@ -435,20 +499,15 @@ $(document).ready(function(){
 });
 </script>
 
-
-<script type="text/javascript" src="assets/js/datatables.min.js"></script>
-
  <script>
-     
-$(document).ready(function() {
-    $('#table').DataTable( {
-        "pagingType": "full_numbers",
-        "lengthMenu": [[10, 20, -1], [10, 20, "All"]]
-    } );
-} );
- </script>
+    // Use the plugin once the DOM has been loaded.
+    $(function () {
+      // Apply the plugin 
+      $('#table').excelTableFilter();
+    });
+  </script>
 
-
+    <script src="assets/js/excel-filter.js"></script>
 
 
 </html>

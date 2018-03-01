@@ -49,7 +49,7 @@ $('document').ready(function() {
                 else if (status == "poweruser") 
                 {
                     $('#login').val('Signing in...');
-                    setTimeout('window.location.href = "poweruser.php";',1000);
+                    setTimeout('window.location.href = "poweruser_home.php";',1000);
                 } 
 
                 else {

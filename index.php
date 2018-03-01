@@ -8,6 +8,15 @@
 
 ?>
 
+<?php
+
+
+include_once "dbconfig.php"; 
+$sql = "SELECT * FROM product ORDER BY id";  
+$result = mysqli_query($conn, $sql);  
+?> 
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,8 +39,8 @@
 
     <!--  Login CSS    -->
     <link href="assets/css/login.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css"/>
 
-    <link rel="stylesheet" href="assets/css/excel-filter.css" />
 
 
 
@@ -85,36 +94,6 @@
                         <p>Table List</p>
                     </a>
                 </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -127,22 +106,50 @@
                 <div class="row">
                     <div class="col-md-12">
              <div class="card">
-                                <div class="header">
-                                   <div class="row">
-                                    <div class="col-md-9">
-                                    </div>
-                                    <div class="col-md-3">
-                                    <div class="input-group">
-                                 
-                                    <input type="text" name="search_text" id="search_text" placeholder="Search by Document Name" class="form-control" />
-                                    <span class="input-group-addon">Search</span>
-                                    </div>
-                                    </div>
-                                    </div>
+ <!--                                <div class="header">
+                                <h3>Information Development</h3>
                                 </div>
-                                    <div id="result"></div>
+ -->
+                                       <div class="container-fluid">
+                            <div class="row">
+                            <div class="content table-responsive table-full-width">
+                                <table id="table" class="table table-hover table-striped">
+                                <thead>
+                                <tr>
+                                   <th>Product Area</th>
+                                   <th>Product Long Name</th>
+                                   <th>Product Short Name</th>
+                                   <th>Document Name</th>
+                                   <th>Doc ID</th>
+                                   <th>Author</th>
+                                   <th>Supported Format</th>
+                                   <th>Where to Find</th>
+                                </tr>
+                                </thead>
+                            <?php  
+                            while ($row = mysqli_fetch_array($result)) {
+                            ?>  
+                                        <tr>
+                                        <td><?php echo $row["productArea"]; ?></td>  
+                                        <td><?php echo $row["productLongName"]; ?></td>  
+                                        <td><?php echo $row["productShortName"]; ?></td>
+                                        <td><?php echo $row["documentName"]; ?></td>
+                                        <td><?php echo $row["docID"]; ?></td>
+                                        <td><?php echo $row["author"]; ?></td>
+                                        <td><?php echo $row["supportedFormat"]; ?></td>
+                                        <td><?php echo $row["whereToFind"]; ?></td>
+                                        </tr>  
+                            <?php  
+                            };  
+                            ?> 
                             </table>
 
+                            </div>
+            
+
+
+                </div>
+                </div>
                             </div>
 
 
@@ -155,6 +162,9 @@
 
     </div>
 </div>
+
+
+<!-- login popup -->
 
     <div id="login-modal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
 
@@ -200,43 +210,18 @@
 
     <script src="assets/js/login.js"></script>
 
+    <script type="text/javascript" src="assets/js/datatables.min.js"></script>
 
-<script>
-    $(document).ready(function(){
+ <script>
+     
+$(document).ready(function() {
+    $('#table').DataTable( {
+        "pagingType": "full_numbers",
+        "lengthMenu": [[10, 20, -1], [10, 20, "All"]]
+    } );
+} );
+ </script>
 
- load_data();
-
- function load_data(query)
- {
-  $.ajax({
-   url:"indexfetch.php",
-   method:"POST",
-   data:{query:query},
-   success:function(data)
-   {
-    $('#result').html(data);
-   }
-  });
- }
- $('#search_text').keyup(function(){
-  var search = $(this).val();
-  if(search != '')
-  {
-   load_data(search);
-  }
-  else
-  {
-   load_data();
-  }
- });
-
-
-
-});
-
-</script>
-
-  <script src="assets/js/excel-filter.js"></script>
 
 </html>
  

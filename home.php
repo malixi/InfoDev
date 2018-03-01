@@ -5,20 +5,10 @@ if(!isset($_SESSION['user_id'])) {
   header('Location: index.php');
 }
 ?>
-
 <?php
-$connect = "localhost";
-$username = "root";
-$password = "";
-$dbname = "infodev";
 
-$conn = mysqli_connect($connect, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-} 
-  
+
+include_once "dbconfig.php"; 
 $sql = "SELECT * FROM product ORDER BY id";  
 $result = mysqli_query($conn, $sql);  
 ?> 
@@ -162,7 +152,7 @@ $result = mysqli_query($conn, $sql);
     
                         </div>
                     </div>
-
+                    <div id="msg" class="alert"></div>
                             <div class="container-fluid">
                             <div class="row">
                             <div class="content table-responsive table-full-width">
@@ -180,24 +170,26 @@ $result = mysqli_query($conn, $sql);
                                    <th>Where to Find</th>
                                 </tr>
                                 </thead>
+                                <tbody id="_editable_table">
                             <?php  
                             while ($row = mysqli_fetch_array($result)) {
                             ?>  
                                         <tr data-row-id="<?php echo $row["id"]; ?>">
                                         <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $row["id"]; ?>"></td> 
-                                        <td><?php echo $row["productArea"]; ?></td>  
-                                        <td><?php echo $row["productLongName"]; ?></td>  
-                                        <td><?php echo $row["productShortName"]; ?></td>
-                                        <td><?php echo $row["documentName"]; ?></td>
-                                        <td><?php echo $row["docID"]; ?></td>
-                                        <td><?php echo $row["author"]; ?></td>
-                                        <td><?php echo $row["supportedFormat"]; ?></td>
-                                        <td><?php echo $row["whereToFind"]; ?></td>
+                                        <td class="editable-col" contenteditable="true" col-index='0' oldVal ="<?php echo $row['productArea'];?>"><?php echo $row['productArea'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='1' oldVal ="<?php echo $row['productLongName'];?>"><?php echo $row['productLongName'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='2' oldVal ="<?php echo $row['productShortName'];?>"><?php echo $row['productShortName'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='3' oldVal ="<?php echo $row['documentName'];?>"><?php echo $row['documentName'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='4' oldVal ="<?php echo $row['docID'];?>"><?php echo $row['docID'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='5' oldVal ="<?php echo $row['author'];?>"><?php echo $row['author'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='6' oldVal ="<?php echo $row['supportedFormat'];?>"><?php echo $row['supportedFormat'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='7' oldVal ="<?php echo $row['whereToFind'];?>"><?php echo $row['whereToFind'];?></td>
                                         </tr>  
                             <?php  
                             };  
                             ?> 
                             </table>
+                          </tbody>
 
                             </div>
             
@@ -443,10 +435,51 @@ $(document).ready(function(){
 $(document).ready(function() {
     $('#table').DataTable( {
         "pagingType": "full_numbers",
-        "lengthMenu": [[10, 20, -1], [10, 20, "All"]]
+        "lengthMenu": [[10, 20, -1], [10, 20, "All"]],
+        "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ 0 ] }
+       ]
     } );
 } );
  </script>
+
+
+<!-- edit function -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('td.editable-col').on('focusout', function() {
+    data = {};
+    data['val'] = $(this).text();
+    data['id'] = $(this).parent('tr').attr('data-row-id');
+    data['index'] = $(this).attr('col-index');
+      if($(this).attr('oldVal') === data['val'])
+    return false;
+
+    $.ajax({   
+          
+          type: "POST",  
+          url: "server.php",  
+          cache:false,  
+          data: data,
+          dataType: "json",       
+          success: function(response)  
+          {   
+            //$("#loading").hide();
+            if(!response.error) {
+              $("#msg").removeClass('alert-danger');
+              $("#msg").addClass('alert-success').html(response.msg);
+              
+            } else {
+              $("#msg").removeClass('alert-success');
+              $("#msg").addClass('alert-danger').html(response.msg);
+            }
+          }   
+        });
+  });
+});
+
+</script>
 
 
 

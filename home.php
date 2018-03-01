@@ -152,7 +152,7 @@ $result = mysqli_query($conn, $sql);
     
                         </div>
                     </div>
-                    <div id="msg" class="alert"></div>
+                            <div id="msg" class="alert"></div>
                             <div class="container-fluid">
                             <div class="row">
                             <div class="content table-responsive table-full-width">
@@ -469,10 +469,11 @@ $(document).ready(function(){
             if(!response.error) {
               $("#msg").removeClass('alert-danger');
               $("#msg").addClass('alert-success').html(response.msg);
-              
+              window.setTimeout(function(){window.location.reload()}, 500);
             } else {
               $("#msg").removeClass('alert-success');
               $("#msg").addClass('alert-danger').html(response.msg);
+              window.setTimeout(function(){window.location.reload()}, 500);
             }
           }   
         });

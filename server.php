@@ -44,9 +44,9 @@
 	if(!$error) {
 			$sql = "UPDATE product SET ".$columns[$colIndex]." = '".$colVal."' WHERE id='".$rowId."'";
 			$status = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
-			$msg = array('error' => $error, 'msg' => 'Success! updation in mysql');
+			$msg = array('error' => $error, 'msg' => 'Document Updated!');
 	} else {
-		$msg = array('error' => $error, 'msg' => 'Failed! updation in mysql');
+		$msg = array('error' => $error, 'msg' => 'Please try again!');
 	}
 	}
 	// send data as json format

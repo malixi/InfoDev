@@ -5,10 +5,10 @@ $username = 'root';
 $password = '';
 $database = 'infodev';
 
-$db = new mysqli($hostname, $username, $password, $database);
-if($db->connect_errno)
+$conn = new mysqli($hostname, $username, $password, $database);
+if($conn->connect_errno)
     die('Error ' . $this->db->connect_error);
 
 include_once('UserClass.php');
-$con = new UserClass($db);
+$con = new UserClass($conn);
 ?>

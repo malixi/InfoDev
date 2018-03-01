@@ -21,7 +21,7 @@ if(isset($_POST["query"]))
 else
 {
  $query = "
-  SELECT * FROM product ORDER BY `id` DESC
+  SELECT * FROM product ORDER BY `id`
  ";
 }
 $result = mysqli_query($connect, $query);
@@ -70,7 +70,7 @@ else
 
 ?>
 
-
+<!-- delete function -->
 <script type="text/javascript">
 $(document).ready(function(){
   jQuery('#master').on('click', function(e) {
@@ -115,7 +115,8 @@ $(document).ready(function(){
           }   
         });
         $.each(allVals, function( index, value ) {
-          $('table tr').filter("[data-row-id='" + value + "']").remove();
+          $('table tr').filter("[data-row-id='" + value + "']").css('background-color', '#FF3232');
+          $('table tr').filter("[data-row-id='" + value + "']").fadeOut('slow');
         });
         
 
@@ -131,7 +132,3 @@ $(document).ready(function(){
   });
 });
 </script>
-
-
-<!--  <tr>
-   <td><button type="button" name="delete" class="btn btn-danger btn-xs delete btn-fill" id="'.$row["id"].'">Delete</button></td> -->

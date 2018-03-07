@@ -5,16 +5,15 @@ if(!isset($_SESSION['user_id'])) {
   header('Location: index.php');
 }
 ?>
+
+
+
 <?php
-
-
-include_once "dbconfig.php"; 
-$sql = "SELECT * FROM product ORDER BY id";  
-$result = mysqli_query($conn, $sql);  
-?> 
-
-
-
+require_once("dbcontroller.php");
+$db_handle = new DBController();
+$sql = "SELECT * from product";
+$results = $db_handle->runQuery($sql);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -162,36 +161,36 @@ $result = mysqli_query($conn, $sql);
                                 <table id="table" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
-                                   <th><input type="checkbox" id="master"></th>
-                                   <th>Product Area</th>
-                                   <th>Product Long Name</th>
-                                   <th>Product Short Name</th>
-                                   <th>Document Name</th>
-                                   <th>Doc ID</th>
-                                   <th>Author</th>
-                                   <th>Supported Format</th>
-                                   <th>Where to Find</th>
+                                   <th class="table-header" ><input type="checkbox" id="master"></th>
+                                   <th class="table-header" >Product Area</th>
+                                   <th class="table-header" >Product Long Name</th>
+                                   <th class="table-header" >Product Short Name</th>
+                                   <th class="table-header" >Document Name</th>
+                                   <th class="table-header" >Doc ID</th>
+                                   <th class="table-header" >Author</th>
+                                   <th class="table-header" >Supported Format</th>
+                                   <th class="table-header" >Where to Find</th>
                                 </tr>
                                 </thead>
                                 <tbody id="_editable_table">
-                            <?php  
-                            while ($row = mysqli_fetch_array($result)) {
-                            ?>  
-                                        <tr data-row-id="<?php echo $row["id"]; ?>">
-                                        <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $row["id"]; ?>"></td> 
-                                        <td class="editable-col" contenteditable="true" col-index='0' oldVal ="<?php echo $row['productArea'];?>"><?php echo $row['productArea'];?></td>
-         <td class="editable-col" contenteditable="true" col-index='1' oldVal ="<?php echo $row['productLongName'];?>"><?php echo $row['productLongName'];?></td>
-         <td class="editable-col" contenteditable="true" col-index='2' oldVal ="<?php echo $row['productShortName'];?>"><?php echo $row['productShortName'];?></td>
-         <td class="editable-col" contenteditable="true" col-index='3' oldVal ="<?php echo $row['documentName'];?>"><?php echo $row['documentName'];?></td>
-         <td class="editable-col" contenteditable="true" col-index='4' oldVal ="<?php echo $row['docID'];?>"><?php echo $row['docID'];?></td>
-         <td class="editable-col" contenteditable="true" col-index='5' oldVal ="<?php echo $row['author'];?>"><?php echo $row['author'];?></td>
-         <td class="editable-col" contenteditable="true" col-index='6' oldVal ="<?php echo $row['supportedFormat'];?>"><?php echo $row['supportedFormat'];?></td>
-         <td class="editable-col" contenteditable="true" col-index='7' oldVal ="<?php echo $row['whereToFind'];?>"><?php echo $row['whereToFind'];?></td>
-                                        </tr>  
-                            <?php  
-                            };  
-                            ?> 
-                            </table>
+                                  <?php
+                                  foreach($results as $row=>$v) {
+                                  ?>
+                                      <tr data-row-id="<?php echo $results[$row]["id"]; ?>">
+                                        <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $results[$row]["id"]; ?>"></td> 
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productArea','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productArea"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productLongName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productLongName"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productShortName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productShortName"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'documentName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["documentName"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'docID','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["docID"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'author','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["author"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'supportedFormat','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["supportedFormat"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'whereToFind','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["whereToFind"]; ?></td>
+                                      </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                     </table>
                           </tbody>
 
                             </div>
@@ -452,7 +451,7 @@ $(document).ready(function() {
 
 <!-- edit function -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
   $('td.editable-col').on('focusout', function() {
     data = {};
@@ -483,7 +482,26 @@ $(document).ready(function(){
   });
 });
 
-</script>
+</script> -->
+
+
+        <script>
+        function showEdit(editableObj) {
+            $(editableObj).css("background","#FFF");
+        } 
+        
+        function saveToDatabase(editableObj,column,id) {
+            $(editableObj).css("background","#FFF url(loaderIcon.gif) no-repeat right");
+            $.ajax({
+                url: "edit.php",
+                type: "POST",
+                data:'column='+column+'&editval='+editableObj.innerHTML+'&id='+id,
+                success: function(data){
+                    $(editableObj).css("background","#FDFDFD");
+                }        
+           });
+        }
+        </script>
 
 
 

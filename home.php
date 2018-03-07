@@ -12,7 +12,7 @@ if(!isset($_SESSION['user_id'])) {
 require_once("dbcontroller.php");
 $db_handle = new DBController();
 $sql = "SELECT * from product";
-$faq = $db_handle->runQuery($sql);
+$results = $db_handle->runQuery($sql);
 ?>
 <!doctype html>
 <html lang="en">
@@ -174,18 +174,18 @@ $faq = $db_handle->runQuery($sql);
                                 </thead>
                                 <tbody id="_editable_table">
                                   <?php
-                                  foreach($faq as $k=>$v) {
+                                  foreach($results as $row=>$v) {
                                   ?>
-                                      <tr data-row-id="<?php echo $faq[$k]["id"]; ?>">
-                                        <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $faq[$k]["id"]; ?>"></td> 
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productArea','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["productArea"]; ?></td>
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productLongName','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["productLongName"]; ?></td>
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productShortName','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["productShortName"]; ?></td>
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'documentName','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["documentName"]; ?></td>
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'docID','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["docID"]; ?></td>
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'author','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["author"]; ?></td>
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'supportedFormat','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["supportedFormat"]; ?></td>
-                                        <td contenteditable="true" onBlur="saveToDatabase(this,'whereToFind','<?php echo $faq[$k]["id"]; ?>')" onClick="showEdit(this);"><?php echo $faq[$k]["whereToFind"]; ?></td>
+                                      <tr data-row-id="<?php echo $results[$row]["id"]; ?>">
+                                        <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $results[$row]["id"]; ?>"></td> 
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productArea','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productArea"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productLongName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productLongName"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'productShortName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productShortName"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'documentName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["documentName"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'docID','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["docID"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'author','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["author"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'supportedFormat','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["supportedFormat"]; ?></td>
+                                        <td contenteditable="true" onBlur="saveToDatabase(this,'whereToFind','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["whereToFind"]; ?></td>
                                       </tr>
                                     <?php
                                     }

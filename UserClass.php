@@ -24,16 +24,7 @@ class UserClass
 			$_SESSION['user_lastname'] = $row['lastName'];
 			$_SESSION['user_type'] = $row['userType'];
 
-			if ($_SESSION['user_type'] == "admin")
-			{
-				return "admin";
-			}
-
-			else if ($_SESSION['user_type'] == "poweruser")
-			{
-               return "poweruser";
-			}
-			
+			return true;
 
 
 		}

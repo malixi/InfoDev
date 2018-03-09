@@ -27,7 +27,7 @@
                     
                         <li>
                             <a a href="#" data-toggle="modal" data-target="#login-modal">
-                                <p>Log in</p>
+                                <p>Sign in</p>
                             </a>
                         </li>
 

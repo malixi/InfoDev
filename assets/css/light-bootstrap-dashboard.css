@@ -71,6 +71,8 @@ button.close {
     -webkit-font-smoothing: antialiased;
     font-family: "Roboto","Helvetica Neue",Arial,sans-serif;
     font-weight: 400;
+
+    
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
@@ -84,6 +86,7 @@ h1, .h1 {
 
 h2, .h2 {
     font-size: 36px;
+    color: black;
 }
 
 h3, .h3 {
@@ -159,7 +162,7 @@ body,
 }
 
 body {
-    background: rgb(224,237,247);
+    background: #f2f2f2;
 }
 
 a {
@@ -1010,6 +1013,10 @@ fieldset[disabled] .btn-neutral.active {
     height: 40px;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+#export {
+    width: 90px;
 }
 
 .form-control:focus {
@@ -2216,7 +2223,7 @@ fieldset[disabled] .btn-neutral.active {
 .card {
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-    background-color: #FFFFFF;
+    background-color: #222222;
     margin-bottom: 30px;
 }
 
@@ -2300,7 +2307,7 @@ fieldset[disabled] .btn-neutral.active {
 
 .card .title {
     margin: 0;
-    color: #333333;
+    color: #9A9A9A;
     font-weight: 300;
 }
 
@@ -3881,3 +3888,57 @@ fieldset[disabled] .btn-neutral.active {
     }
 }
 
+@font-face{
+    font-family:'Proxima-Nova';
+    src:url(../fonts/ProximaNova-Regular.otf);
+}
+
+
+.login-modal-container  {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #b3b3b3;
+    border: 1px solid #a1a1a1;
+        -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.login-modal-container .modal-body  {
+  padding: 20px 10px;
+}
+
+.login-modal-container .modal-footer  {
+  text-align: center;
+  margin: 0 10px;
+}
+
+.login-modal-container h2  {
+  text-align: center;
+  font-size: 19px;
+  margin-bottom: 25px;
+}
+
+.login-modal-container input {
+  font-size: 16px;
+}
+
+.login-modal-container  input[type=submit]  {
+  background-color: #368ac0;
+  border: 2px solid #368ac0;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  color: white;
+}
+
+.login-modal-container  input[type=submit]:hover  {
+  background-color: #357AE8;
+  border: 2px solid #357AE8;
+}
+
+.error {
+  border-color: #d9534f;
+}

@@ -1,7 +1,7 @@
 <?php
 
 	@session_start();
-	require_once('connector.php');
+	require_once('dbconfig.php');
 
 	$productArea = $_POST['productarea'];
 	$productLongName = $_POST['productlongname'];
@@ -26,7 +26,7 @@
 
 
 
-	  $stmt = $dbconn->prepare('SELECT * FROM product WHERE docID = ?');
+	  $stmt = $conn->prepare('SELECT * FROM product WHERE docID = ?');
 			$stmt->bind_param('s', $documentID);
 			$stmt->execute();
 			$result = $stmt->get_result();
@@ -36,7 +36,7 @@
 				$stmt->close();
 				exit;
 			} else {
-				$stmt2 = $dbconn->prepare('INSERT INTO product (productArea, productLongName, productShortName, documentName, docID, author, supportedFormat, whereToFind) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+				$stmt2 = $conn->prepare('INSERT INTO product (productArea, productLongName, productShortName, documentName, docID, author, supportedFormat, whereToFind) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
 				$stmt2->bind_param('ssssssss', $productArea, $productLongName, $productShortName, $documentName, $documentID, $Author, $Format, $Find);
 				$stmt2->execute();
 				echo "<script>alert('Product Added.');</script>";

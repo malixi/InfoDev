@@ -1,10 +1,11 @@
 /*! * Bootstrap v3.3.7 (http://getbootstrap.com) * Copyright 2011-2016 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html{
-    font-family:sans-serif;
+    font-family:Proxima-Nova;
     -webkit-text-size-adjust:100%;
     -ms-text-size-adjust:100%
 }
+
 body{
     margin:0
 }
@@ -209,8 +210,7 @@ td,th{
 }
 @font-face{
     font-family:'Glyphicons Halflings';
-    src:url(../fonts/glyphicons-halflings-regular.eot);
-    src:url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'),url(../fonts/glyphicons-halflings-regular.woff) format('woff'),url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'),url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+    src:url(../fonts/ProximaNova-Regular.otf);
 }
 .glyphicon{
     position:relative;
@@ -1027,7 +1027,7 @@ body{
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size:14px;
     line-height:1.42857143;
-    color:#333;
+    color: #808080;
     background-color:#fff
 }
 button,input,select,textarea{
@@ -4066,8 +4066,8 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
     z-index:3;
     color:#fff;
     cursor:default;
-    background-color:#337ab7;
-    border-color:#337ab7
+    background-color:#b3b3b3;
+    border-color:#b3b3b3;
 }
 .pagination>.disabled>a,.pagination>.disabled>a:focus,.pagination>.disabled>a:hover,.pagination>.disabled>span,.pagination>.disabled>span:focus,.pagination>.disabled>span:hover{
     color:#777;

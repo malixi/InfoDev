@@ -37,23 +37,10 @@ $result = mysqli_query($conn, $sql);
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
-    <!--  Login CSS    -->
-    <link href="assets/css/login.css" rel="stylesheet" media="screen">
+    <!--  Datatables CSS    -->
         <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css"/>
 
 
-
-
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-    
 </head>
 <body>
 
@@ -70,30 +57,13 @@ $result = mysqli_query($conn, $sql);
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    InfoDev
+                <a href="index.php" class="simple-text">
+                    InfoDev Product Assignment
                 </a>
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="user.html">
-                        <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="table.html">
-                        <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
-                    </a>
-                </li>
+   
             </ul>
         </div>
     </div>
@@ -113,7 +83,7 @@ $result = mysqli_query($conn, $sql);
                                        <div class="container-fluid">
                             <div class="row">
                             <div class="content table-responsive table-full-width">
-                                <table id="table" class="table table-hover table-striped">
+                                <table id="table" class="table">
                                 <thead>
                                 <tr>
                                    <th>Product Area</th>
@@ -179,16 +149,16 @@ $result = mysqli_query($conn, $sql);
                     <h2>Information Development</h2>
                     <div id="err-msg"></div>
                     <div class="form-group">
-                        <input type="text" id="uname" name="uname" placeholder="Username" class="form-control input-lg" />
+                        <input type="text" id="uname" name="uname" placeholder="Username" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" name="password" placeholder="Password" class="form-control input-lg" />
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" />
                     </div>
                     <div class="form-group">
                         <div id="captcha"></div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" id="login" name="login" value="Sign In" class="btn-block btn-lg" />
+                        <input type="submit" id="login" name="login" value="Sign In" class="btn-block btn-sm" />
                     </div>
                 </div>
             </form>

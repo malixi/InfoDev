@@ -1,8 +1,5 @@
 <?php
-//update.php
-$connect = mysqli_connect("localhost", "root", "", "infodev");
-$query = "
- UPDATE product SET ".$_POST["name"]." = '".$_POST["value"]."' 
- WHERE id = '".$_POST["pk"]."'";
-mysqli_query($connect, $query);
+require_once("dbcontroller.php");
+$db_handle = new DBController();
+$result = $db_handle->executeUpdate("UPDATE product set " . $_POST["column"] . " = '".$_POST["editval"]."' WHERE  id=".$_POST["id"]);;
 ?>

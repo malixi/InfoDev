@@ -42,15 +42,10 @@ $('document').ready(function() {
             url: 'login.php',
             data: $('#login-form').serialize() + '&' + $('#login').attr('name') + '=' + $('#login').val(),
             success: function(status){
-                if (status == "admin") {
+                if (status == true) {
                     $('#login').val('Signing in...');
                     setTimeout('window.location.href = "home.php";',1000);
                 }
-                else if (status == "poweruser") 
-                {
-                    $('#login').val('Signing in...');
-                    setTimeout('window.location.href = "poweruser_home.php";',1000);
-                } 
 
                 else {
                     $('#err-msg').html('<div class="alert alert-danger text-center">Invalid username or password</div>');

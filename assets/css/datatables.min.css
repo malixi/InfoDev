@@ -20,6 +20,8 @@ div.dataTables_wrapper div.dataTables_length label{
     font-weight:normal;
     text-align:left;
     white-space:nowrap
+     color: #fff;
+     position: absolute;
 }
 div.dataTables_wrapper div.dataTables_length select{
     width:75px;
@@ -40,7 +42,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 }
 div.dataTables_wrapper div.dataTables_info{
     padding-top:0.85em;
-    white-space:nowrap
+    white-space:nowrap;
+    position: absolute;
 }
 div.dataTables_wrapper div.dataTables_paginate{
     margin:0;

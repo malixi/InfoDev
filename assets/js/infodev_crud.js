@@ -236,8 +236,9 @@ $.fn.editable.defaults.mode = 'inline';
   type: "POST",
   //dataType: 'json',   
     source: [
+        {value: 'PDF/XLS', text: 'PDF/XLS'},
         {value: 'PDF', text: 'PDF'},
-        {value: 'Onlinehelp', text: 'Onlinehelp'},
+        {value: 'Onlinehelp', text: 'Onlinehelp'}
     ],
   validate: function(value){
    if($.trim(value) == '')

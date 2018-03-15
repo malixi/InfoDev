@@ -92,6 +92,7 @@ $results = $db_handle->runQuery($sql);
           <?php include 'home_header.php'; ?>
 
 
+
         <div class="content">
               <div class="container-fluid">
                 <div class="row">
@@ -99,19 +100,29 @@ $results = $db_handle->runQuery($sql);
                     <div class="card">
                             <div class="header">
                                    <div class="row">
-                                    <div class="col-md-11">
+                                    <div class="col-md-10">
                                     <?php include 'addproduct.php'; ?>
+                                    <?php if($_SESSION['user_type'] === "admin") { 
+                                     include 'import.php';
+                                 }
+                                     ?>
                             </div>
+                            </label>
+
                             <div class="col">
                             <div class="actionPart" >
                             <div class="dataTables_filter">
+                                <div class="export">
+                                <label>      Print/Export to</label>
                                 <select class="form-control" id="export">
-                                    <option>Export</option>
+                                    <option></option>
                                     <option id="print">Print</option>
                                     <option id="csv">CSV</option>
                                     <option id="excel">XLS</option>                                       
                                     <option id="pdf">PDF</option>
                                 </select>
+                                 </div>
+
                             </div>
                             </div>
 
@@ -233,7 +244,6 @@ $results = $db_handle->runQuery($sql);
    
 </body>
 
-  
 
 
   <!--   Core JS Files   -->
@@ -244,11 +254,11 @@ $results = $db_handle->runQuery($sql);
     <script src="assets/js/notify.js"></script>
 
 
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js""></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <script src="assets/js/datatables/datatables-buttons.js"></script>
+    <script src="assets/js/datatables/datatables-jszip.js"></script>
+    <script src="assets/js/datatables/datatables-pdfmake.js"></script>
+    <script src="assets/js/datatables/datatables-fonts.js"></script>
+    <script src="assets/js/datatables/datatables-html-buttons.js"></script>
+    <script src="assets/js/datatables/datatables-print-buttons.js"></script>
 
 </html>

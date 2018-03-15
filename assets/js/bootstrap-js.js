@@ -4720,7 +4720,7 @@ Editableform based on Twitter Bootstrap 3
             pInitInput.apply(this);
 
             var emptyInputClass = this.input.options.inputclass === null || this.input.options.inputclass === false;
-            var defaultClass = 'form-control-sm';
+            var defaultClass = 'form-control-editable';
             
             //bs3 add `form-control` class to standard inputs
             var stdtypes = 'text,select,textarea,password,email,url,tel,number,range,time,typeaheadjs'.split(','); 

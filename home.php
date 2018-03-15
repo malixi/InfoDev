@@ -146,12 +146,12 @@ $results = $db_handle->runQuery($sql);
                                   ?>
                                       <tr data-row-id="<?php echo $results[$row]["id"]; ?>">
                                         <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $results[$row]["id"]; ?>"></td> 
-                                        <td onclick="DoubleClick(this);"  onBlur="saveToDatabase(this,'productArea','<?php echo $results[$row]["id"]; ?>')"><?php echo $results[$row]["productArea"]; ?></td>
-                                        <td onclick="DoubleClick(this);" onclick="DoubleClick(this);"   onBlur="saveToDatabase(this,'productLongName','<?php echo $results[$row]["id"]; ?>')"><?php echo $results[$row]["productLongName"]; ?></td>
-                                        <td onclick="DoubleClick(this);"   onBlur="saveToDatabase(this,'productShortName','<?php echo $results[$row]["id"]; ?>')" ><?php echo $results[$row]["productShortName"]; ?></td>
-                                        <td onclick="DoubleClick(this);"    onBlur="saveToDatabase(this,'documentName','<?php echo $results[$row]["id"]; ?>')"><?php echo $results[$row]["documentName"]; ?></td>
-                                        <td onclick="DoubleClick(this);"    onBlur="saveToDatabase(this,'docID','<?php echo $results[$row]["id"]; ?>')"><?php echo $results[$row]["docID"]; ?></td>
-                                        <td onclick="DoubleClick(this);"   onBlur="saveToDatabase(this,'author','<?php echo $results[$row]["id"]; ?>')" ><?php echo $results[$row]["author"]; ?></td>
+                                        <td data-name="productArea" class="productArea" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productArea"]; ?></td>
+                                        <td data-name="productLongName" class="productLongName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productLongName"]; ?></td>
+                                        <td data-name="productShortName" class="productShortName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productShortName"]; ?></td>
+                                        <td data-name="documentName" class="documentName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["documentName"]; ?></td>
+                                        <td data-name="docID" class="docID" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["docID"]; ?></td>
+                                        <td data-name="author" class="author" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["author"]; ?></td>
                                         <td data-name="supportedFormat" class="supportedFormat" data-type="checklist" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["supportedFormat"]; ?></td>
                                         <td data-name="whereToFind" class="whereToFind" data-type="checklist" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["whereToFind"]; ?></td>
                                       </tr>
@@ -184,12 +184,12 @@ $results = $db_handle->runQuery($sql);
                                   ?>
                                       <tr data-row-id="<?php echo $results[$row]["id"]; ?>">
                                         <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $results[$row]["id"]; ?>"></td> 
-                                        <td onBlur ="saveToDatabase(this,'productArea','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productArea"]; ?></td>
-                                        <td onBlur ="saveToDatabase(this,'productLongName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productLongName"]; ?></td>
-                                        <td onBlur ="saveToDatabase(this,'productShortName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["productShortName"]; ?></td>
-                                        <td onBlur ="saveToDatabase(this,'documentName','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["documentName"]; ?></td>
-                                        <td onBlur ="saveToDatabase(this,'docID','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["docID"]; ?></td>
-                                        <td onBlur ="saveToDatabase(this,'author','<?php echo $results[$row]["id"]; ?>')" onClick="showEdit(this);"><?php echo $results[$row]["author"]; ?></td>
+                                        <td data-name="productArea" class="productArea" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productArea"]; ?></td>
+                                        <td data-name="productLongName" class="productLongName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productLongName"]; ?></td>
+                                        <td data-name="productShortName" class="productShortName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productShortName"]; ?></td>
+                                        <td data-name="documentName" class="documentName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["documentName"]; ?></td>
+                                        <td data-name="docID" class="docID" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["docID"]; ?></td>
+                                        <td data-name="author" class="author" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["author"]; ?></td>
                                         <td id="usernames" data-name="supportedFormat" class="supportedFormat" data-type="checklist" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["supportedFormat"]; ?></td>
                                         <td data-name="whereToFind" class="whereToFind" data-type="checklist" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["whereToFind"]; ?></td>
                                       </tr>
@@ -251,49 +251,4 @@ $results = $db_handle->runQuery($sql);
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js""></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 
- 
-  <script>
-$.fn.editable.defaults.mode = 'inline';
-
- $('#_editable_table').editable({
-  container: 'body',
-  selector: 'td.supportedFormat',
-  url: "updates.php",
-  type: "POST",
-  //dataType: 'json',   
-    source: [
-        {value: 'PDF', text: 'PDF'},
-        {value: 'Onlinehelp', text: 'Onlinehelp'},
-    ],
-  validate: function(value){
-   if($.trim(value) == '')
-   {
-    return 'This field is required';
-   }
-  }
- });
- 
- $('#_editable_table').editable({
-  container: 'body',
-  selector: 'td.whereToFind',
-  url: "updates.php",
-  type: "POST",
-  //dataType: 'json',
-  source: [
-        {value: 'Infor Download Center', text: 'Infor Download Center'},
-        {value: 'Infor Xtreme', text: 'Infor Xtreme'},
-
-    ],
-  validate: function(value){
-   if($.trim(value) == '')
-   {
-    return 'This field is required';
-   }
-  }
- });
-
-
-
-
-</script>
 </html>

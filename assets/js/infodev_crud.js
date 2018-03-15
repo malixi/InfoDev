@@ -150,26 +150,120 @@ $(document).ready(function() {
     } );
 } );
 
-// function to edit products 
 
-function DoubleClick(element) {
-  element.contentEditable = true;
-  setTimeout(function() {
-    if (document.activeElement !== element) {
-      element.contentEditable = false;
-    }
-  }, 300);
-}
 
-function saveToDatabase(editableObj,column,id) {
-    $(editableObj).css("background","#FFF url(ajax-loader.gif) no-repeat right");
-    $.ajax({
-        url: "update.php",
-        type: "POST",
-        data:'column='+column+'&editval='+editableObj.innerHTML+'&id='+id,
-        success: function(data){
-            $(editableObj).css("background","#393939");
-              // $.notify('Document Updated',{close: true, color: "#fff", background: "#20D67B",animationType:"drop"})
-        }      
-   });
-}
+// function to edit 
+$.fn.editable.defaults.mode = 'inline';
+
+
+ $('#_editable_table').editable({
+  container: 'body',
+  selector: 'td.productArea',
+  url: "update.php",
+  type: "POST",
+  //dataType: 'json',
+  validate: function(value){
+   if($.trim(value) == '')
+   {
+    return 'This field is required';
+   }
+  }
+ });
+
+  $('#_editable_table').editable({
+  container: 'body',
+  selector: 'td.productLongName',
+  url: "update.php",
+  type: "POST",
+  //dataType: 'json',
+  validate: function(value){
+   if($.trim(value) == '')
+   {
+    return 'This field is required';
+   }
+  }
+ });
+
+   $('#_editable_table').editable({
+  container: 'body',
+  selector: 'td.productShortName',
+  url: "update.php",
+  type: "POST",
+  //dataType: 'json',
+  validate: function(value){
+   if($.trim(value) == '')
+   {
+    return 'This field is required';
+   }
+  }
+ });
+
+
+    $('#_editable_table').editable({
+  container: 'body',
+  selector: 'td.documentName',
+  url: "update.php",
+  type: "POST",
+  //dataType: 'json',
+  validate: function(value){
+   if($.trim(value) == '')
+   {
+    return 'This field is required';
+   }
+  }
+ });
+
+
+    $('#_editable_table').editable({
+  container: 'body',
+  selector: 'td.author',
+  url: "update.php",
+  type: "POST",
+  //dataType: 'json',
+  validate: function(value){
+   if($.trim(value) == '')
+   {
+    return 'This field is required';
+   }
+  }
+ });
+
+
+ $('#_editable_table').editable({
+  container: 'body',
+  selector: 'td.supportedFormat',
+  url: "updates.php",
+  type: "POST",
+  //dataType: 'json',   
+    source: [
+        {value: 'PDF', text: 'PDF'},
+        {value: 'Onlinehelp', text: 'Onlinehelp'},
+    ],
+  validate: function(value){
+   if($.trim(value) == '')
+   {
+    return 'This field is required';
+   }
+  }
+ });
+ 
+ $('#_editable_table').editable({
+  container: 'body',
+  selector: 'td.whereToFind',
+  url: "updates.php",
+  type: "POST",
+  //dataType: 'json',
+  source: [
+        {value: 'Infor Download Center', text: 'Infor Download Center'},
+        {value: 'Infor Xtreme', text: 'Infor Xtreme'},
+
+    ],
+  validate: function(value){
+   if($.trim(value) == '')
+   {
+    return 'This field is required';
+   }
+  }
+ });
+
+

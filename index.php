@@ -76,10 +76,20 @@ $result = mysqli_query($conn, $sql);
                 <div class="row">
                     <div class="col-md-12">
              <div class="card">
- <!--                                <div class="header">
-                                <h3>Information Development</h3>
+                                <div class="header">
+                                <div class="actionPart" >
+                            <div class="dataTables_filter">
+                                <select class="form-control" id="export">
+                                    <option>Export</option>
+                                    <option id="print">Print</option>
+                                    <option id="csv">CSV</option>
+                                    <option id="excel">XLS</option>                                       
+                                    <option id="pdf">PDF</option>
+                                </select>
+                            </div>
+                            </div>
                                 </div>
- -->
+
                                        <div class="container-fluid">
                             <div class="row">
                             <div class="content table-responsive table-full-width">
@@ -187,10 +197,36 @@ $result = mysqli_query($conn, $sql);
 $(document).ready(function() {
     $('#table').DataTable( {
         "pagingType": "full_numbers",
-        "lengthMenu": [[10, 20, -1], [10, 20, "All"]]
+        "lengthMenu": [[10, 20, -1], [10, 20, "All"]],
+        dom: 'Blfrtip',
+            buttons: [
+            'print',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+            initComplete: function() {
+         var $buttons = $('.dt-buttons').hide();
+         $('#export').on('change', function() {
+            var btnClass = $(this).find(":selected")[0].id 
+               ? '.buttons-' + $(this).find(":selected")[0].id 
+               : null;
+            if (btnClass) $buttons.find(btnClass).click(); 
+         })
+       },
     } );
 } );
  </script>
+
+
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js""></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
 
 
 </html>

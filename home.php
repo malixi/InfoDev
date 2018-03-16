@@ -6,8 +6,6 @@ if(!isset($_SESSION['user_id']) && !isset($_SESSION['user_type'])) {
 }
 ?>
 
-
-
 <?php
 require_once("dbcontroller.php");
 $db_handle = new DBController();
@@ -37,19 +35,14 @@ $results = $db_handle->runQuery($sql);
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script defer src="assets/js/fontawesome.js"></script>
 <!--     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'> -->
 
-      <link rel="stylesheet" type="text/css" href="assets/css/notify.css">
-
-
+    <link rel="stylesheet" type="text/css" href="assets/css/notify.css">
     <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css"/>
 
     <script src="assets/js/jquery.2.0.3.min.js"></script> 
     <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
-
     <link href="assets/css/bootstrap-editable.css" rel="stylesheet"/>
     <script src="assets/js/bootstrap-js.js"></script>
 
@@ -63,14 +56,6 @@ $results = $db_handle->runQuery($sql);
 
 <div class="wrapper">
     <div class="sidebar" data-color="white">
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
         <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="home.php" class="simple-text">
@@ -140,15 +125,15 @@ $results = $db_handle->runQuery($sql);
                                 <table id="table" class="table table">
                                 <thead>
                                 <tr>
-                                   <th class="table-header" ><input type="checkbox" id="master"></th>
-                                   <th class="table-header" >Product Area</th>
-                                   <th class="table-header" >Product Long Name</th>
-                                   <th class="table-header" >Product Short Name</th>
-                                   <th class="table-header" >Document Name</th>
-                                   <th class="table-header" >Doc ID</th>
-                                   <th class="table-header" >Author</th>
-                                   <th class="table-header" >Supported Format</th>
-                                   <th class="table-header" >Where to Find</th>
+                                   <th><input type="checkbox" id="master"></th>
+                                   <th>Product Area</th>
+                                   <th>Product Long Name</th>
+                                   <th>Product Short Name</th>
+                                   <th>Document Name</th>
+                                   <th>Doc ID</th>
+                                   <th>Author</th>
+                                   <th>Supported Format</th>
+                                   <th>Where to Find</th>
                                 </tr>
                                 </thead>
                                 <tbody id="_editable_table">
@@ -253,7 +238,7 @@ $results = $db_handle->runQuery($sql);
     <script type="text/javascript" src="assets/js/infodev_crud.js"></script>
     <script src="assets/js/notify.js"></script>
 
-
+   <!-- Assets for Export files -->
     <script src="assets/js/datatables/datatables-buttons.js"></script>
     <script src="assets/js/datatables/datatables-jszip.js"></script>
     <script src="assets/js/datatables/datatables-pdfmake.js"></script>

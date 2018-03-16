@@ -77,16 +77,22 @@ $result = mysqli_query($conn, $sql);
                     <div class="col-md-12">
              <div class="card">
                                 <div class="header">
-                                <div class="actionPart" >
-                            <div class="dataTables_filter">
+                                
+                           
+                            <div class="actionPart" >
+                     
+                                <div class="export">
+                                <label>Print/Export to</label>
                                 <select class="form-control" id="export">
-                                    <option>Export</option>
+                                    <option></option>
                                     <option id="print">Print</option>
                                     <option id="csv">CSV</option>
                                     <option id="excel">XLS</option>                                       
                                     <option id="pdf">PDF</option>
                                 </select>
-                            </div>
+                                 </div>
+
+                        
                             </div>
                                 </div>
 
@@ -114,7 +120,7 @@ $result = mysqli_query($conn, $sql);
                                         <td><?php echo $row["productLongName"]; ?></td>  
                                         <td><?php echo $row["productShortName"]; ?></td>
                                         <td><?php echo $row["documentName"]; ?></td>
-                                        <td><?php echo $row["docID"]; ?></td>
+                                        <td class="docID"><?php echo $row["docID"]; ?></td>
                                         <td><?php echo $row["author"]; ?></td>
                                         <td><?php echo $row["supportedFormat"]; ?></td>
                                         <td><?php echo $row["whereToFind"]; ?></td>
@@ -180,13 +186,10 @@ $result = mysqli_query($conn, $sql);
 </body>
 
 
-
     <!--   Core JS Files   -->
     <script src="assets/js/jquery.2.0.3.min.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
     <script src="assets/js/login.js"></script>
 
@@ -218,14 +221,12 @@ $(document).ready(function() {
 } );
  </script>
 
-
-
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js""></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <script src="assets/js/datatables/datatables-buttons.js"></script>
+    <script src="assets/js/datatables/datatables-jszip.js"></script>
+    <script src="assets/js/datatables/datatables-pdfmake.js"></script>
+    <script src="assets/js/datatables/datatables-fonts.js"></script>
+    <script src="assets/js/datatables/datatables-html-buttons.js"></script>
+    <script src="assets/js/datatables/datatables-print-buttons.js"></script>
 
 
 

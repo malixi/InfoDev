@@ -26,7 +26,7 @@
                     <ul class="nav navbar-nav navbar-right">
                     
                         <li>
-                            <a a href="#" data-toggle="modal" id="sign-in"data-target="#login-modal">
+                            <a data-toggle="modal" id="sign-in" data-target="#login-modal">
                                 <p>Sign in</p>
                             </a>
                         </li>

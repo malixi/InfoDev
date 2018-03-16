@@ -29,12 +29,12 @@
                                   Please upload CSV format only
                                   <br><br>
 
-                                <form method="post" action="importprocess.php" enctype="multipart/form-data">
+                                <form method="post" action="importprocess.php" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to submit the form? This action cannot be undone');">
                                     <fieldset>
                                         <div class="form-group">
-                                          <input type="file" name="file" required="required" />
+                                          <input type="file" name="file" required="required" accept=".csv" />
                                         </div>
-                                    <input class="btn btn-info btn-fill" type="submit" onclick="ConfirmDelete()" name="submit_file" value="Submit"  />
+                                    <input class="btn btn-info btn-fill" type="submit" name="submit_file" value="Submit"  />
                                     </fieldset>
                                 </form>
 

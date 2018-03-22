@@ -94,7 +94,7 @@ $results = $db_handle->runQuery($sql);
             <div class="tab-pane active" id="home">
               <div class="col-md-5">
 
-                <form>
+                <form method="post" action="updatepassword.php">
 
 
                                             <div class="form-group">

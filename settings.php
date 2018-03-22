@@ -118,17 +118,9 @@ $results = $db_handle->runQuery($sql);
                             
                                     
                 </form>
-                <div class="col-md-5">
-
-
-
-            </div>
           </div>
         </div>
       </div>
-
-
-        <div class="clearfix"></div>
 
 
             
@@ -144,8 +136,7 @@ $results = $db_handle->runQuery($sql);
 
 
             </div>
-            </div>
-            </div>
+
       
         </div>
        <?php include 'footer.php'; ?>

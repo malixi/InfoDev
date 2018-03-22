@@ -24,25 +24,26 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-              
-                        <li>
-                            <a>
 
-                                <p>Welcome, <?php 
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome, <?php 
 
                                 if(isset($_SESSION['user_id'])) 
 
                                 {
                                 echo $_SESSION['user_firstname'] ." ". $_SESSION['user_lastname'] ;
-                                } ?></p>
-                            </a>
+                                } ?><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="Settings.php">Settings</a></li>
+                              <li><a href="logout.php">Sign Out</a></li>
+                            </ul>
                         </li>
+        
 
-                        <li>
+<!--                         <li>
                             <a href="logout.php">
                                 <p>Sign Out</p>
                             </a>
-                        </li>
+                        </li> -->
 
 
                         <li class="separator hidden-lg"></li>

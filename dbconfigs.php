@@ -1,11 +1,5 @@
 <?php
 
-/*
-Developer: Ehtesham Mehmood
-Site:      PHPCodify.com
-Script:    Import Excel to MySQL using PHP and Bootstrap
-File:      db_con.php
-*/
 
 $DB_host = "localhost";
 $DB_user = "root";

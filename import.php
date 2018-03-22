@@ -26,10 +26,10 @@
                             <div class="content">
                                 <div class="panel-body">
 
-                                  Please upload CSV format only
+                                  Please upload CSV format only.
                                   <br><br>
 
-                                <form method="post" action="importprocess.php" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to submit the form? This action cannot be undone');">
+                                <form method="post" action="importprocess.php" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to submit the file? This action cannot be undone.');">
                                     <fieldset>
                                         <div class="form-group">
                                           <input type="file" name="file" required="required" accept=".csv" />

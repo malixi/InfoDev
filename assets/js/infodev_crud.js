@@ -1,5 +1,5 @@
 
-// function to show the pop-up products
+// function to show the pop-up products, import, settings
 
 $(document).ready(function(){
 
@@ -25,6 +25,9 @@ $(document).ready(function(){
 
 
 }); 
+
+
+
 
 // function to delete products
 
@@ -156,12 +159,21 @@ $(document).ready(function() {
 $.fn.editable.defaults.mode = 'inline';
 
 
- $('#_editable_table').editable({
+
+  $('#_editable_table').editable({
   container: 'body',
   selector: 'td.productArea',
-  url: "update.php",
+  url: "updates.php",
   type: "POST",
-  //dataType: 'json',
+  //dataType: 'json',   
+    source: [
+          {value: 'Infor', text: 'Infor'},
+          {value: 'Lawson', text: 'Lawson'},
+          {value: 'M3', text: 'M3'},
+          {value: 'Mongoose', text: 'Mongoose'},
+          {value: 'Local.ly', text: 'Local.ly'},
+          {value: 'Cloudsuite', text: 'Cloudsuite'}
+    ],
   validate: function(value){
    if($.trim(value) == '')
    {
@@ -169,6 +181,7 @@ $.fn.editable.defaults.mode = 'inline';
    }
   }
  });
+ 
 
   $('#_editable_table').editable({
   container: 'body',
@@ -236,7 +249,7 @@ $.fn.editable.defaults.mode = 'inline';
   type: "POST",
   //dataType: 'json',   
     source: [
-        {value: 'PDF/XLS', text: 'PDF/XLS'},
+        {value: 'CSV/XLS', text: 'CSV/XLS'},
         {value: 'PDF', text: 'PDF'},
         {value: 'Onlinehelp', text: 'Onlinehelp'}
     ],
@@ -247,7 +260,8 @@ $.fn.editable.defaults.mode = 'inline';
    }
   }
  });
- 
+
+
  $('#_editable_table').editable({
   container: 'body',
   selector: 'td.whereToFind',

@@ -37,18 +37,14 @@ $results = $db_handle->runQuery($sql);
     <!--     Fonts and icons     -->
     <script defer src="assets/js/fontawesome.js"></script>
 <!--     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'> -->
-
+    
     <link rel="stylesheet" type="text/css" href="assets/css/notify.css">
     <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css"/>
 
     <script src="assets/js/jquery.2.0.3.min.js"></script> 
     <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="assets/css/bootstrap-editable.css" rel="stylesheet"/>
-    <script src="assets/js/bootstrap-js.js"></script>
-
-  
-
- 
+    <script src="assets/js/editable-js.js"></script>
 
 
 </head>
@@ -98,7 +94,7 @@ $results = $db_handle->runQuery($sql);
                             <div class="actionPart" >
                             <div class="dataTables_filter">
                                 <div class="export">
-                                <label>      Print/Export to</label>
+                                <label>Print/Export to</label>
                                 <select class="form-control" id="export">
                                     <option></option>
                                     <option id="print">Print</option>
@@ -142,7 +138,7 @@ $results = $db_handle->runQuery($sql);
                                   ?>
                                       <tr data-row-id="<?php echo $results[$row]["id"]; ?>">
                                         <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $results[$row]["id"]; ?>"></td> 
-                                        <td data-name="productArea" class="productArea" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productArea"]; ?></td>
+                                         <td data-name="productArea" class="productArea" data-type="checklist" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productArea"]; ?></td>
                                         <td data-name="productLongName" class="productLongName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productLongName"]; ?></td>
                                         <td data-name="productShortName" class="productShortName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productShortName"]; ?></td>
                                         <td data-name="documentName" class="documentName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["documentName"]; ?></td>
@@ -180,7 +176,7 @@ $results = $db_handle->runQuery($sql);
                                   ?>
                                       <tr data-row-id="<?php echo $results[$row]["id"]; ?>">
                                         <td ><input type="checkbox" class="sub_chk" data-id="<?php echo $results[$row]["id"]; ?>"></td> 
-                                        <td data-name="productArea" class="productArea" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productArea"]; ?></td>
+                                         <td data-name="productArea" class="productArea" data-type="checklist" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productArea"]; ?></td>
                                         <td data-name="productLongName" class="productLongName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productLongName"]; ?></td>
                                         <td data-name="productShortName" class="productShortName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["productShortName"]; ?></td>
                                         <td data-name="documentName" class="documentName" data-type="text" data-pk="<?php echo $results[$row]["id"]; ?>"><?php echo $results[$row]["documentName"]; ?></td>
@@ -231,6 +227,8 @@ $results = $db_handle->runQuery($sql);
 
 
 
+
+
   <!--   Core JS Files   -->
 
     <script src="assets/js/responsive.js"></script>
@@ -247,3 +245,7 @@ $results = $db_handle->runQuery($sql);
     <script src="assets/js/datatables/datatables-print-buttons.js"></script>
 
 </html>
+
+
+
+

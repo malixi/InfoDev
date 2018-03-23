@@ -19,7 +19,7 @@ if(isset($_POST["submit_file"]))
   $whereToFind = $csv[7];
 
 
-  $stmt = $DBcon->prepare("INSERT INTO product(productArea,productLongName,productShortName,documentName,docID,author,supportedFormat,whereToFind) VALUES(:productArea,:productLongName,:productShortName,:documentName,:docID,:author,:supportedFormat,:whereToFind)");
+  $stmt = $DBcon->prepare("INSERT IGNORE INTO product(productArea,productLongName,productShortName,documentName,docID,author,supportedFormat,whereToFind) VALUES(:productArea,:productLongName,:productShortName,:documentName,:docID,:author,:supportedFormat,:whereToFind)");
 
   $stmt->bindparam(':productArea', $productArea);
   $stmt->bindparam(':productLongName', $productLongName);

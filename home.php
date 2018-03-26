@@ -91,7 +91,7 @@ $results = $db_handle->runQuery($sql);
                             </label>
 
                             <div class="col">
-                            <div class="actionPart" >
+                            <div class="actionPart">
                             <div class="dataTables_filter">
                                 <div class="export">
                                 <label>Print/Export to</label>
@@ -118,7 +118,7 @@ $results = $db_handle->runQuery($sql);
 
                                 <?php if($_SESSION['user_type'] === "admin") { ?>
                                 
-                                <table id="table" class="table table">
+                                <table id="table" class="table table-striped">
                                 <thead>
                                 <tr>
                                    <th><input type="checkbox" id="master"></th>
@@ -156,7 +156,7 @@ $results = $db_handle->runQuery($sql);
                                     {
                                      ?>
 
-                                     <table id="table" class="table table">
+                                     <table id="table" class="table  table-striped">
                                 <thead>
                                 <tr>
                                    <th class="table-header" ><input type="checkbox" id="master"></th>

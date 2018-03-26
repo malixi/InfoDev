@@ -1027,7 +1027,7 @@ body{
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size:14px;
     line-height:1.42857143;
-    color: #808080;
+    color: #000;
     background-color:#fff
 }
 button,input,select,textarea{
@@ -1051,6 +1051,8 @@ figure{
     margin:0
 }
 img{
+    padding-top: 5%;
+    padding-bottom: 5%;
     vertical-align:middle
 }
 .carousel-inner>.item>a>img,.carousel-inner>.item>img,.img-responsive,.thumbnail a>img,.thumbnail>img{
@@ -1771,7 +1773,7 @@ pre code{
         width:91.66666667%
     }
     .col-md-10{
-        width:83.33333333%
+        width:82.33333333%
     }
     .col-md-9{
         width:75%
@@ -2125,7 +2127,7 @@ th{
     border-bottom-width:2px
 }
 .table-striped>tbody>tr:nth-of-type(odd){
-    background-color:#f9f9f9
+    background-color:#F5F5F5
 }
 .table-hover>tbody>tr:hover{
     background-color:#f5f5f5
@@ -3373,6 +3375,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 .nav>li{
     position:relative;
     display:block
+
 }
 .nav>li>a{
     position:relative;
@@ -3691,6 +3694,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
     padding-top:10px;
     padding-bottom:10px;
     line-height:20px
+    
 }
 @media (max-width:767px){
     .navbar-nav .open .dropdown-menu{

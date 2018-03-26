@@ -1219,7 +1219,8 @@ fieldset[disabled] .btn-neutral.active {
     border-bottom-width: 1px;
     font-size: 12px;
     text-transform: uppercase;
-    color: #9A9A9A;
+    color: #000
+    ;
     font-weight: 400;
     padding-bottom: 5px;
 }
@@ -1667,6 +1668,7 @@ fieldset[disabled] .btn-neutral.active {
     padding: 10px 15px;
     margin: 10px 3px;
     position: relative;
+    padding-top: 10%;
 }
 
 .navbar .navbar-nav > li > a.btn {
@@ -2177,7 +2179,7 @@ fieldset[disabled] .btn-neutral.active {
 .card {
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-    background-color: #222222;
+    background-color: #EBEBEB;
     margin-bottom: 30px;
 }
 
@@ -2244,7 +2246,7 @@ fieldset[disabled] .btn-neutral.active {
 .card label {
     font-size: 14px;
     font-weight: 400;
-    color: #9A9A9A;
+    color: #000;
     margin-bottom: 0px;
 }
 
@@ -2261,7 +2263,7 @@ fieldset[disabled] .btn-neutral.active {
 
 .card .title {
     margin: 0;
-    color: #9A9A9A;
+    color: #000;
     font-weight: 300;
 }
 
@@ -3983,3 +3985,9 @@ fieldset[disabled] .btn-neutral.active {
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
+
+/*.export{
+    float: right;
+    padding-right: 5%;
+}
+*/

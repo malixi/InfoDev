@@ -99,7 +99,7 @@ $result = mysqli_query($conn, $sql);
                                        <div class="container-fluid">
                             <div class="row">
                             <div class="content table-responsive table-full-width">
-                                <table id="table" class="table">
+                                <table id="table" class="table table-striped">
                                 <thead>
                                 <tr>
                                    <th>Product Area</th>
